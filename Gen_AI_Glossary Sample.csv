@@ -1,0 +1,81 @@
+BRAND,PAGE,METRICS,DEFINITION,Data Sources,Business Rules
+Qulipta,Copay,% of patients that optin for Copay in a month,The Total Patients who have opted in for Copay out of Total QULIPTA Service Optin Patient,Snowflake - PSOPS.DDSV.PS_ServiceOptIns__c and PSOPS.DDSV.ps_Brand__c,"Numerator = Distinct count of ps_patient__c corresponding to PS_ServiceOptIns__c as Savings Card
+Denominator = Distinct count of ps_patient__c corresponding to PS_ServiceOptIns__c as Service Enrollment"
+Qulipta,Copay,Number of unique patients that enrolled for Copay in a month,Total number of Patients who have Opted In for Copay in a given month,Snowflake - PSOPS.DDSV.PS_ServiceOptIns__c and PSOPS.DDSV.ps_Brand__c,"Distinct count of ps_patient__c corresponding to PS_ServiceOptIns__c as Savings Card
+"
+Qulipta,Copay Report,% of patients optin for copay,% of patients that optin for Copay in a month,Snowflake - PSOPS.DDSV.PS_ServiceOptIns__c and PSOPS.DDSV.ps_Brand__c,"Numerator = Distinct count of ps_patient__c corresponding to PS_ServiceOptIns__c as Savings Card
+Denominator = Distinct count of ps_patient__c corresponding to PS_ServiceOptIns__c as Service Enrollment"
+Qulipta,Copay Report,Copay enrolments,Number of unique patients that enrolled for Copay by month,Snowflake - PSOPS.DDSV.PS_ServiceOptIns__c and PSOPS.DDSV.ps_Brand__c,"Distinct count of ps_patient__c corresponding to PS_ServiceOptIns__c as Savings Card
+"
+Qulipta,Email Report,Email Sends,Number of email sends,Snowflake - PSM360_PROD.DDSV.ps_crm_sfmc,"Distinct count of combination of subscriber key and sent date. count(distinct subscriber_key, sent_dt)"
+Qulipta,Email Report,Email Delivery Rate,Delivery rate of an email,Snowflake - PSM360_PROD.DDSV.ps_crm_sfmc,Ratio of deliveries to sends
+Qulipta,Email Report,Email Unique Unsubscribes,Unique optouts from en email,Snowflake - PSM360_PROD.DDSV.ps_crm_sfmc,Distinct count or prm id when subscriber status = unsubscribed
+Qulipta,Email Report,Email Unique Open Rate,% of Email opens compared to the total # emails delivered,Snowflake - PSM360_PROD.DDSV.ps_crm_sfmc,Ratio of unique opens to deliveries
+Qulipta,Email Report,Email Unique Click Rate,% of Email clicked compared to the total # emails delivered,Snowflake - PSM360_PROD.DDSV.ps_crm_sfmc,Ratio of unique clicks to deliveries
+Qulipta,Email Report,Email Unique CTOR,% of total emails clicked compared to total emails opened,Snowflake - PSM360_PROD.DDSV.ps_crm_sfmc,Ratio of unique clicks to unique opens
+Qulipta,Enrolment Report ,Enrolments,Monthly enrolments of patients by channel ,Snowflake- PSOPS.DDSV.PS_ServiceOptIns__c and PSOPS.DDSV.ps_Brand__c,SUM(ps_patient__c) at monthly and yearly level
+Qulipta,Enrolment Report ,Payor,Commercially insured patients,Snowflake - PSM360_PROD.DDSV.PS_PRM_ACCESSANDREIMBURSEMENTS,Count (DISTINCT ABV_ACCOUNT_PPM_ID) at monthly level
+Qulipta,FAS Interactions,Number of calls made ,Number of total interactions by FAS with HCPs/Accounts,"Teradata - DDSVP.CALL_ACTIVITY_DETAIL
+DDSVP.CALL_ACTIVITY_PROD_DISCUSSN
+DDSVP.HPDW_zip_to_territory
+DDSVP.CALL_ACTIVITY_ITEM_DROPPED",Sum of calls made (by counting external call activity detail id)
+Qulipta,FAS Interactions,Number of Accouts/HCPs reached,Total number of distinct HCPs and Accounts with which the FAS interacted ,"Teradata - DDSVP.CALL_ACTIVITY_DETAIL
+DDSVP.CALL_ACTIVITY_PROD_DISCUSSN
+DDSVP.HPDW_zip_to_territory
+DDSVP.CALL_ACTIVITY_ITEM_DROPPED",Sum of doctors or patients reached 
+Qulipta,FAS Interactions,Collaterals shared by FAS,Number of Materials distributed by FAS,"Teradata - DDSVP.CALL_ACTIVITY_DETAIL
+DDSVP.CALL_ACTIVITY_PROD_DISCUSSN
+DDSVP.HPDW_zip_to_territory
+DDSVP.CALL_ACTIVITY_ITEM_DROPPED",Number of collaterals shared
+Qulipta,FAS iRep Email,Email Deliveries,Total Delivered Emails,"Teradata -  ADSVP.PAIM_FACT_FIELD_EMAIL_HCP_VW
+ADSVP.DIM_CUSTOMER",Sum of emails delivered
+Qulipta,FAS iRep Email,Email Open Rate,% of Email opens compared to the total # emails delivered,"Teradata -  ADSVP.PAIM_FACT_FIELD_EMAIL_HCP_VW
+ADSVP.DIM_CUSTOMER",Ratio of unique opens to deliveries
+Qulipta,FAS iRep Email,Email Click Rate,% of Email clicked compared to the total # emails delivered,"Teradata -  ADSVP.PAIM_FACT_FIELD_EMAIL_HCP_VW
+ADSVP.DIM_CUSTOMER",Ratio of unique clicks to deliveries
+Qulipta,FAS iRep Email,Email CTOR,% of total emails clicked compared to total emails opened,"Teradata -  ADSVP.PAIM_FACT_FIELD_EMAIL_HCP_VW
+ADSVP.DIM_CUSTOMER",Ratio of unique clicks to unique opens
+Qulipta,Patient Services,Channel Enrolments,Total Number of Patient who have opted in for Service Enrollment,Snowflake - PSOPS.DDSV.PS_ServiceOptIns__c and PSOPS.DDSV.ps_Brand__c,Distinct count of ps_patient__c corresponding to PS_ServiceOptIns__c as Service Enrollment
+Qulipta,SMS Report,SMS Sends,Number of text sends,Snowflake - PSM360_PROD.DDSV.ps_crm_sfmc_sms,"COUNT(SENT), COUNT(DELIVERED) at Campaign level"
+Qulipta,SMS Report,SMS Undelivered,Number of texts undelivered,Snowflake - PSM360_PROD.DDSV.ps_crm_sfmc_sms,Sum of total instances when undelivered status = True
+Qulipta,Text to Web,Numer of eligible patients that completed enrollment,Number of commercially insured patients who completed the savings card enrollment,Snowflake - PSM360_PROD.DDSV.MOONRABBIT_TEXT_TO_WEB_DI_VW,ABV_SESSION_ID where COMPLETE_ENROLLMENT = Y
+Qulipta,Text to Web,"Number of patient opt-in (text, news, geofence)",Number of patients who opted-in for text message and notification on their phone,Snowflake - PSM360_PROD.DDSV.MOONRABBIT_TEXT_TO_WEB_DI_VW,"ABV_SESSION_ID where TEXT_OPTIN = Y (Text Opt In)
+ABV_SESSION_ID where MOBILE_NOTIFICATION = Y (Text Opt In)"
+Qulipta,Text to Web,Numer of patients added to mobile wallet,Number of Patients that added savings cards to wallet,Snowflake - PSM360_PROD.DDSV.MOONRABBIT_TEXT_TO_WEB_DI_VW,ABV_SESSION_ID where WALLET_DATETIME is Not Null and Device Type is Android/iOS 
+Qulipta,Text to Web,Number of eligible patients,Number of commercially insured patients,Snowflake - PSM360_PROD.DDSV.MOONRABBIT_TEXT_TO_WEB_DI_VW,ABV_SESSION_ID where COMMERCIAL_INS = Y
+Qulipta,Text to Web,Text Sends,Number of Patients who Text with a 'Yes' or 'No' on the savings card confirmation SMS,Snowflake - PSM360_PROD.DDSV.ps_crm_sfmc_sms track,Tracking Name should be the SMS Campaign name and MESSAGE_TEXT should be 'Y' for Yes and 'N' for No
+Qulipta,Text to web,Numer of eligible patients enrolled,Number of commercially insured patients who completed the savings card enrollment, Snowflake - PSM360_PROD.DDSV.MOONRABBIT_TEXT_TO_WEB_DI_VW,ABV_SESSION_ID where COMMERCIAL_INS = Y
+Qulipta,Text to web,"Number of patient opt-in (text, news, geofence)",Number of patients who opted-in for text message and notification on their phone, Snowflake - PSM360_PROD.DDSV.MOONRABBIT_TEXT_TO_WEB_DI_VW,"ABV_SESSION_ID where TEXT_OPTIN = Y (Text Opt In)
+ABV_SESSION_ID where MOBILE_NOTIFICATION = Y (Text Opt In)"
+Qulipta,Text to web,Numer of patients added to wallet,Number of Patients who added Savings Card to their wallet, Snowflake - PSM360_PROD.DDSV.MOONRABBIT_TEXT_TO_WEB_DI_VW,ABV_SESSION_ID where WALLET_DATETIME is Not Null and Device Type is Android/iOS 
+Qulipta,Text to web,Number of eligible patients,Number of commercially insured patients, Snowflake - PSM360_PROD.DDSV.MOONRABBIT_TEXT_TO_WEB_DI_VW,ABV_SESSION_ID where COMMERCIAL_INS = Y
+Qulipta,Text to web,Text Sends,Number of Patients who Text with a 'Yes' or 'No' on the savings card confirmation SMS, Snowflake - PSM360_PROD.DDSV.MOONRABBIT_TEXT_TO_WEB_DI_VW,Tracking Name should be the SMS Campaign name and MESSAGE_TEXT should be 'Y' for Yes and 'N' for No
+Ubrelvy,Copay,Number of unique patients that enrolled for Copay in a month,Total number of Patients who have Opted In for Copay in a given month,Snowflake - PSOPS.DDSV.PS_ServiceOptIns__c and PSOPS.DDSV.ps_Brand__c,"Distinct count of ps_patient__c corresponding to PS_ServiceOptIns__c as Savings Card
+"
+Ubrelvy,Enrolment Report ,Enrolments,Monthly enrolments of patients by channel ,Snowflake- PSOPS.DDSV.PS_ServiceOptIns__c and PSOPS.DDSV.ps_Brand__c,SUM(ps_patient__c) at monthly and yearly level
+Ubrelvy,Enrolment Report ,Payor,Commercially insured patients,Snowflake- PSOPS.DDSV.PS_ServiceOptIns__c and PSOPS.DDSV.ps_Brand__c,Count (DISTINCT ABV_ACCOUNT_PPM_ID) at monthly level
+Ubrelvy,Enrolment Report ,Copay enrolments,Number of unique patients that enrolled for Copay by month,Snowflake- PSOPS.DDSV.PS_ServiceOptIns__c and PSOPS.DDSV.ps_Brand__c,COUNT(ps_patient__c) at monthly and yearly level
+Ubrelvy,Enrolment Report ,Copay enrolments,Number of unique patients that enrolled for Copay by State,Snowflake- PSOPS.DDSV.PS_ServiceOptIns__c and PSOPS.DDSV.ps_Brand__c,COUNT(ps_patient__c) at monthly level
+Ubrelvy,FAS Interactions,Number of calls made ,Number of calls made by FAS ,"Teradata - DDSVP.CALL_ACTIVITY_DETAIL
+DDSVP.CALL_ACTIVITY_PROD_DISCUSSN
+DDSVP.HPDW_zip_to_territory
+DDSVP.CALL_ACTIVITY_ITEM_DROPPED",Sum of calls made
+Ubrelvy,FAS Interactions,Number of Accouts/HCPs reached,Number of Account/HCPs reached byFAS ,"Teradata - DDSVP.CALL_ACTIVITY_DETAIL
+DDSVP.CALL_ACTIVITY_PROD_DISCUSSN
+DDSVP.HPDW_zip_to_territory
+DDSVP.CALL_ACTIVITY_ITEM_DROPPED",Sum of doctors or patients reached 
+Ubrelvy,FAS Interactions,Collaterals shared by FAS,Number of Materials distributed by FAS,"Teradata - DDSVP.CALL_ACTIVITY_DETAIL
+DDSVP.CALL_ACTIVITY_PROD_DISCUSSN
+DDSVP.HPDW_zip_to_territory
+DDSVP.CALL_ACTIVITY_ITEM_DROPPED",Number of collaterals shared
+Ubrelvy,FAS iRep Email,Email Deliveries,Number of Emails Sends per Template,"Teradata -  ADSVP.PAIM_FACT_FIELD_EMAIL_HCP_VW
+ADSVP.DIM_CUSTOMER",Sum of emails delivered
+Ubrelvy,FAS iRep Email,Email Open Rate,% of Email opens compared to the total # emails delivered,"Teradata -  ADSVP.PAIM_FACT_FIELD_EMAIL_HCP_VW
+ADSVP.DIM_CUSTOMER",Ratio of unique opens to deliveries
+Ubrelvy,FAS iRep Email,Email Click Rate,% of Email clicked compared to the total # emails delivered,"Teradata -  ADSVP.PAIM_FACT_FIELD_EMAIL_HCP_VW
+ADSVP.DIM_CUSTOMER",Ratio of unique clicks to deliveries
+Ubrelvy,FAS iRep Email,Email CTOR,% of total emails clicked compared to total emails opened,"Teradata -  ADSVP.PAIM_FACT_FIELD_EMAIL_HCP_VW
+ADSVP.DIM_CUSTOMER",Ratio of unique clicks to unique opens
+Ubrelvy,Patient Services,Channel Enrolments,Total Number of Patient who have opted in for Service Enrollment,Snowflake - PSOPS.DDSV.PS_ServiceOptIns__c and PSOPS.DDSV.ps_Brand__c,Distinct count of ps_patient__c corresponding to PS_ServiceOptIns__c as Service Enrollment
+Ubrelvy,SMS Report,SMS Registration,SMS Sent by Template,Epsilon Extract - PSM360_PROD.DDSV.ps_crm_sfmc_sms,COUNT(Submetric) filter by Metric = Registration at Campaign Level
+Ubrelvy,SMS Report,Savings Web Enrolment,Patients who enrolled in Web via SMS,Epsilon Extract - PSM360_PROD.DDSV.ps_crm_sfmc_sms,COUNT(Submetric) filter by Metric = Enrollment at Campaign Level
